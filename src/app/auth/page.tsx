@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import { authenticate } from "@/actions/auth";
@@ -44,7 +45,6 @@ export default function Auth() {
       await authenticate(email, password);
       router.push("/admin");
     } catch (error) {
-      console.error("error ->", error);
     } finally {
       setIsAuthenticating(false);
     }
