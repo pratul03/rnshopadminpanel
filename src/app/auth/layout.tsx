@@ -1,3 +1,4 @@
+import { ADMIN } from "@/constants/constants";
 import { createClient } from "@/supabase/server";
 import { redirect } from "next/navigation";
 import { ReactNode } from "react";
@@ -19,7 +20,7 @@ export default async function AuthLayout({
       console.log("Error while fetching data", error);
       return;
     }
-    if (data.type === "admin") return redirect("/admin");
+    if (data.type === ADMIN) return redirect("/admin");
   }
   return <>{children}</>;
 }
