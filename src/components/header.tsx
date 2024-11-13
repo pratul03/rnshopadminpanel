@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { CircleUser, Menu, Moon, Package2, Search, Sun } from "lucide-react";
+import { CircleUser, Menu, Package2, Search, Sun } from "lucide-react";
+import { MoonIcon } from "@radix-ui/react-icons";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -16,6 +17,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
+import { useTheme } from "next-themes";
 
 const NAV_LINKS = [
   { href: "/admin/dashboard", label: "Dashboard" },
@@ -26,6 +28,7 @@ const NAV_LINKS = [
 
 export const Header = () => {
   const pathname = usePathname();
+  const { setTheme } = useTheme();
 
   const handleLogout = async () => {
     // Add logic to handle logout
@@ -112,29 +115,29 @@ export const Header = () => {
                 <DropdownMenuTrigger asChild>
                   <Button className="w-full" variant="outline" size="icon">
                     <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-                    <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                    <MoonIcon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
                     <span className="sr-only">Toggle theme</span>
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
                   <DropdownMenuItem
-                    onClick={() => {
-                      /* Set light theme */
-                    }}
+                    onClick={() => setTheme("light") /* Set light theme */}
                   >
                     Light
                   </DropdownMenuItem>
                   <DropdownMenuItem
-                    onClick={() => {
+                    onClick={
+                      () => setTheme("dark")
                       /* Set light theme */
-                    }}
+                    }
                   >
                     Dark
                   </DropdownMenuItem>
                   <DropdownMenuItem
-                    onClick={() => {
+                    onClick={
+                      () => setTheme("system")
                       /* Set light theme */
-                    }}
+                    }
                   >
                     System
                   </DropdownMenuItem>
