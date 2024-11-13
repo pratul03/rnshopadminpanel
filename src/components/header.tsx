@@ -4,7 +4,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { CircleUser, Menu, Package2, Search, Sun } from "lucide-react";
 import { MoonIcon } from "@radix-ui/react-icons";
-
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
