@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { CircleUser, Menu, Package2, Search, Sun } from "lucide-react";
 import { MoonIcon } from "@radix-ui/react-icons";
 import { Button } from "@/components/ui/button";
@@ -17,6 +17,7 @@ import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
 import { useTheme } from "next-themes";
+import { createClient } from "@/supabase/client";
 
 const NAV_LINKS = [
   { href: "/admin/dashboard", label: "Dashboard" },
@@ -28,9 +29,13 @@ const NAV_LINKS = [
 export const Header = () => {
   const pathname = usePathname();
   const { setTheme } = useTheme();
+  const router = useRouter();
+  const supabase = createClient();
 
   const handleLogout = async () => {
     // Add logic to handle logout
+    await supabase.auth.signOut();
+    router.push("/");
   };
 
   return (
