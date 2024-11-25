@@ -9,7 +9,14 @@ export type Product = {
   maxQuantity: number;
 };
 
-export type CategoriesWithProducts = {
+export type Category = {
+  created_at: string;
+  id: number;
+  imageUrl: string;
+  name: string;
+  slug: string;
+};
+export type CategoryWithProducts = {
   created_at: string;
   imageUrl: string;
   id: number;
@@ -18,4 +25,4 @@ export type CategoriesWithProducts = {
   slug: string;
 };
 
-export type CategoriesWithProductsResponse = CategoriesWithProducts[];
+export type CategoriesWithProductsResponse = CategoryWithProducts[];
