@@ -11,7 +11,7 @@ export type ProductWithCategory = {
   maxQuantity: number;
 };
 
-export type ProductWithCategoriesResponse = ProductWithCategory[];
+export type ProductsWithCategoriesResponse = ProductWithCategory[];
 
 export type UpdateProductSchema = {
   category: number;
