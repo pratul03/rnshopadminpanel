@@ -73,3 +73,10 @@ export const updateProduct = async ({
   }
   return data;
 };
+
+export const deleteProduct = async (slug: string) => {
+  const { error } = await supabase.from("product").delete().match({ slug });
+  if (error) {
+    throw new Error(`Error creating product: ${error.message}`);
+  }
+};
