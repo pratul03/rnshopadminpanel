@@ -67,7 +67,9 @@ export const ProductPageComponent: FC<Props> = ({
 
   const router = useRouter();
 
-  const productCreateHandler = async (data: CreateOrUpdateProductSchema) => {
+  const productCreateUpdateHandler = async (
+    data: CreateOrUpdateProductSchema
+  ) => {
     const {
       category,
       images,
@@ -143,8 +145,25 @@ export const ProductPageComponent: FC<Props> = ({
             title,
             slug,
           });
+          form.reset();
+          router.refresh();
+          setIsProductModalOpen(false);
+          toast.success("Product updated successfully");
         }
+        break;
       }
+      default:
+        console.log("Invalid intent");
+    }
+  };
+
+  const deleteProductHandler = async () => {
+    if (currentProduct?.slug) {
+      await deleteProduct(currentProduct.slug);
+      router.refresh();
+      toast.success("Product deleted successfully");
+      setIsDeleteModalOpen(false);
+      setCurrentProduct(null);
     }
   };
   return <div>ProductPageComponent</div>;
