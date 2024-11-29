@@ -9,7 +9,7 @@ import {
 import { CreateProductSchemaServer } from "../app/admin/products/schema";
 
 const supabase = createClient();
-export const getProductWithCategories =
+export const getProductsWithCategories =
   async (): Promise<ProductsWithCategoriesResponse> => {
     const { data, error } = await supabase
       .from("product")
