@@ -166,5 +166,21 @@ export const ProductPageComponent: FC<Props> = ({
       setCurrentProduct(null);
     }
   };
-  return <div>ProductPageComponent</div>;
+  return (
+    <main className="grid flex-1 items-start gap-4 sm:px-6 sm:py-0 md:gap-8">
+      <div className="container mx-auto p-4">
+        <div className="flex justify-center items-center mb-4">
+          <h1 className="text-2xl font-bold">Products Management</h1>
+          <Button
+            onClick={() => {
+              setCurrentProduct(null);
+              setIsProductModalOpen(true);
+            }}
+          >
+            <PlusIcon className="mr-2 h-4 w-4" /> Add Product
+          </Button>
+        </div>
+      </div>
+    </main>
+  );
 };
