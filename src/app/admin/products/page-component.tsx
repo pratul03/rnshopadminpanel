@@ -167,9 +167,9 @@ export const ProductPageComponent: FC<Props> = ({
     }
   };
   return (
-    <main className="grid flex-1 items-start gap-4 sm:px-6 sm:py-0 md:gap-8">
+    <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8">
       <div className="container mx-auto p-4">
-        <div className="flex justify-center items-center mb-4">
+        <div className="flex justify-between items-center mb-4">
           <h1 className="text-2xl font-bold">Products Management</h1>
           <Button
             onClick={() => {
@@ -180,6 +180,55 @@ export const ProductPageComponent: FC<Props> = ({
             <PlusIcon className="mr-2 h-4 w-4" /> Add Product
           </Button>
         </div>
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead>Title</TableHead>
+              <TableHead>Category</TableHead>
+              <TableHead>Price</TableHead>
+              <TableHead>Max Quantity</TableHead>
+              <TableHead>Hero Image</TableHead>
+              <TableHead>Product Images</TableHead>
+              <TableHead>Actions</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {productsWithCategories.map((product) => (
+              <ProductTableRow
+                setIsProductModalOpen={setIsProductModalOpen}
+                key={product.id}
+                product={product}
+                setCurrentProduct={setCurrentProduct}
+                setIsDeleteModalOpen={setIsDeleteModalOpen}
+              />
+            ))}
+          </TableBody>
+        </Table>
+
+        {/** Product Modal */}
+        <ProductForm
+          form={form}
+          onSubmit={productCreateUpdateHandler}
+          categories={categories}
+          isProductModalOpen={isProductModalOpen}
+          setIsProductModalOpen={setIsProductModalOpen}
+          defaultValues={currentProduct}
+        />
+
+        {/** Delete Product Modal */}
+        <Dialog open={isDeleteModalOpen} onOpenChange={setIsDeleteModalOpen}>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Delete Product</DialogTitle>
+            </DialogHeader>
+            <p>are you sure you want to delete this {currentProduct?.title}?</p>
+            <DialogFooter>
+              <Button variant={"destructive"} onClick={deleteProductHandler}>
+                Delete
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
       </div>
     </main>
   );
