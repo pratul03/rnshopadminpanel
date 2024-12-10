@@ -27,6 +27,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { updateOrderStatus } from "@/actions/orders";
 
 type Props = {
   ordersWithProducts: OrdersWithProducts;

@@ -15,3 +15,12 @@ export const getOrdersWithProducts = async () => {
   }
   return data;
 };
+
+export const updateOrderStatus = async (orderId: number, status: string) => {
+  const { error } = await supabase
+    .from("order")
+    .update({ status })
+    .eq("id", orderId);
+
+  if (error) throw new Error(error.message);
+};
