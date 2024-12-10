@@ -1,6 +1,7 @@
 "use server";
 
 import { createClient } from "@/supabase/server";
+import { revalidatePath } from "next/cache";
 
 const supabase = createClient();
 
@@ -23,4 +24,6 @@ export const updateOrderStatus = async (orderId: number, status: string) => {
     .eq("id", orderId);
 
   if (error) throw new Error(error.message);
+
+  revalidatePath("/admin/orders");
 };
