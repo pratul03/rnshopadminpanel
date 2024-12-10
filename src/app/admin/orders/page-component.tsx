@@ -95,14 +95,14 @@ export default function PageComponent({ ordersWithProducts }: Props) {
                 >
                   <SelectTrigger className="w-[120px]">
                     <SelectValue>{order.status}</SelectValue>
-                    <SelectContent>
-                      {statusOptions.map((status) => (
-                        <SelectItem key={status} value={status}>
-                          {status}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
                   </SelectTrigger>
+                  <SelectContent>
+                    {statusOptions.map((status) => (
+                      <SelectItem key={status} value={status}>
+                        {status}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
                 </Select>
               </TableCell>
               <TableCell>{order.description || "No Description"}</TableCell>
